@@ -1,0 +1,21 @@
+{
+  "name": "api-sales-system",
+  "version": "0.0.0",
+  "author": "Tiago Cambara <tiago.cambara21@gmail.com>",
+  "license": "ISC",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cambara/api-sales-system.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Cambara/api-sales-system/issues"
+  },
+  "homepage": "https://github.com/Cambara/api-sales-system#readme",
+  "dependencies": {
+    "git-commit-msg-linter": "^3.0.2"
+  }
+}
