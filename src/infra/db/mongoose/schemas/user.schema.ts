@@ -1,7 +1,8 @@
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose'
+import { Prop, SchemaFactory } from '@nestjs/mongoose'
 import { Document } from 'mongoose'
+import { DefaultSchema } from '../decorators/default-schema.decorator'
 
-@Schema({ _id: false, timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' } })
+@DefaultSchema()
 export class User {
   @Prop()
   _id: string
@@ -29,12 +30,6 @@ export class User {
 
   @Prop()
   is_blocked: boolean
-
-  @Prop()
-  created_at: Date
-
-  @Prop()
-  updated_at: Date
 }
 
 export type UserDocument = User & Document
