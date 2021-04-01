@@ -5,7 +5,7 @@ export const UserJoiSchema = Joi.object({
   roles: Joi.array().items(Joi.string()).required()
 })
 
-export class CreateUserDto {
+export interface CreateUserDto {
   name: string
   roles: string[]
 }
