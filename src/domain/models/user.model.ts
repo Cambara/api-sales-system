@@ -1,6 +1,6 @@
+import { AddDefaultModel, DefaultModel } from './default.model'
 
-export interface UserModel {
-  _id: string
+export interface AddUserModel extends AddDefaultModel{
   invite_code: string
   email: string
   password: string
@@ -9,6 +9,6 @@ export interface UserModel {
   fk_corporation: string
   is_activated: boolean
   is_blocked: boolean
-  created_at: Date
-  updated_at: Date
 }
+
+export interface UserModel extends AddUserModel, DefaultModel { }
