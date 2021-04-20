@@ -1,4 +1,5 @@
-import { Body, Controller, Get, Inject, Post, UsePipes } from '@nestjs/common'
+import { Body, Controller, Get, Inject, Post, UseGuards, UsePipes } from '@nestjs/common'
+import { JwtAuthGuard } from '../../../data/usecases/auth/jwt-auth.guard'
 import { IGetUsersCase } from '../../../data/usecases/UserCase/protocol'
 import { JoiValidationPipe } from '../../../infra/validation/joi/joi-validation.pipe'
 import { CreateUserDto, UserJoiSchema } from './user.dto'
@@ -11,6 +12,7 @@ export class UserController {
     this.getUsersCase = getUsersCase
   }
 
+  @UseGuards(JwtAuthGuard)
   @Get()
   async list (): Promise<unknown> {
     const users = await this.getUsersCase.execute()

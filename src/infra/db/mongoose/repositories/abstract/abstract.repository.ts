@@ -16,7 +16,9 @@ export abstract class AbstractRepository<T extends Document, J, K> implements IA
 
   async findOne (cond: FilterQuery<T>, project?: unknown): Promise<J | null> {
     const projectObj = project || null
-    return this.model.findOne(cond, projectObj) as unknown as J | null
+    const doc = await this.model.findOne(cond, projectObj)
+    if (!doc) return
+    return doc.toJSON() as unknown as J
   }
 
   async create (obj: K): Promise<J> {
