@@ -28,6 +28,7 @@ export class AuthController {
 
   @UseGuards(JwtAuthGuard)
   @Get()
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   async user (@Request() req):Promise<HttpSuccessResponse<UserModel>> {
     return successResponse(req.user)
   }

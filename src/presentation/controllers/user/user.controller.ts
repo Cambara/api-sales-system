@@ -23,6 +23,7 @@ export class UserController {
     return users
   }
 
+  @Roles(Role.USER_MANAGER)
   @Post()
   @UsePipes(new JoiValidationPipe(UserJoiSchema))
   async add (@Body() body:CreateUserDto): Promise<unknown> {
