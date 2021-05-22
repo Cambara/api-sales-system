@@ -3,6 +3,7 @@ import { JwtModule } from '@nestjs/jwt'
 import { MongooseModule } from '@nestjs/mongoose'
 import { AuthUserCase } from '../../data/usecases/auth/auth-user.case'
 import { GenerateTokenCase } from '../../data/usecases/auth/generate-token.case'
+import { RolesGuard } from '../../data/usecases/auth/roles.guard'
 import { JwtStrategy } from '../../infra/auth/passport/jwt.strategy'
 import { LocalStrategy } from '../../infra/auth/passport/local.strategy'
 import { BcrypterAdapter } from '../../infra/criptography/bcrypter.adapter'
@@ -23,7 +24,7 @@ const generateTokenCase = { provide: 'IGenerateTokenCase', useClass: GenerateTok
       signOptions: { expiresIn: '1d' }
     })
   ],
-  providers: [authRepository, encrypterAdapter, authUserCase, generateTokenCase, LocalStrategy, JwtStrategy],
+  providers: [authRepository, encrypterAdapter, authUserCase, generateTokenCase, LocalStrategy, JwtStrategy, RolesGuard],
   controllers: [AuthController]
 })
 export class AuthModule { }
