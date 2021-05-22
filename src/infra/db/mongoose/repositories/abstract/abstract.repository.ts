@@ -1,7 +1,7 @@
 import { IAbstractRepository } from './abstract.protocol'
 import { Document, FilterQuery, Model, UpdateQuery, QueryOptions } from 'mongoose'
 
-export abstract class AbstractRepository<T extends Document, J> implements IAbstractRepository<T, J> {
+export abstract class AbstractRepository<T extends Document, J, K> implements IAbstractRepository<T, J, K> {
   protected readonly model:Model<T>
 
   constructor (model:Model<T>) {
@@ -16,10 +16,12 @@ export abstract class AbstractRepository<T extends Document, J> implements IAbst
 
   async findOne (cond: FilterQuery<T>, project?: unknown): Promise<J | null> {
     const projectObj = project || null
-    return this.model.findOne(cond, projectObj) as unknown as J | null
+    const doc = await this.model.findOne(cond, projectObj)
+    if (!doc) return
+    return doc.toJSON() as unknown as J
   }
 
-  async create (obj: J): Promise<J> {
+  async create (obj: K): Promise<J> {
     return this.model.create(obj) as unknown as J
   }
 

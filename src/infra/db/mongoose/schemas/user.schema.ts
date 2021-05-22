@@ -1,20 +1,12 @@
 import { Prop, SchemaFactory } from '@nestjs/mongoose'
 import { Document } from 'mongoose'
 import { DefaultSchema } from '../decorators/default-schema.decorator'
+import { BaseSchema } from './base.schema'
 
 @DefaultSchema()
-export class User {
-  @Prop()
-  _id: string
-
-  @Prop()
-  invite_code: string
-
+export class User extends BaseSchema {
   @Prop()
   email: string
-
-  @Prop()
-  password: string
 
   @Prop()
   name: string
