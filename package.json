@@ -6,6 +6,7 @@
   "description": "",
   "scripts": {
     "build": "tsc",
+    "docker:local": "docker-compose -f ./docker-compose.local.yml up -d",
     "start": "tsnd --transpile-only --respawn --ignore-watch node_modules src/main/main.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
